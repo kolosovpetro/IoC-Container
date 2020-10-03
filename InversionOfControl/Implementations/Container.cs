@@ -13,7 +13,7 @@ namespace InversionOfControl.Implementations
 
         public void RegisterTransient<TContract, TImplementation>()
         {
-            _services.Add(new Service(typeof(TContract), typeof(TImplementation), null, LifeTime.Transient));
+            _services.Add(new Service(typeof(TContract), typeof(TImplementation), LifeTime.Transient));
         }
 
         public void RegisterTransient<TContract, TImplementation>(TImplementation instance)
@@ -24,7 +24,7 @@ namespace InversionOfControl.Implementations
 
         public void RegisterSingleton<TContract, TImplementation>()
         {
-            _services.Add(new Service(typeof(TContract), typeof(TImplementation), null, LifeTime.Singleton));
+            _services.Add(new Service(typeof(TContract), typeof(TImplementation), LifeTime.Singleton));
         }
 
         public void RegisterSingleton<TContract, TImplementation>(TImplementation instance)
@@ -39,12 +39,8 @@ namespace InversionOfControl.Implementations
                 return _instances[typeof(TContract)];
 
             var obj = _services.First(x => x.Contract == typeof(TContract));
-            var contract = typeof(TContract);
-            var implementation = obj.Implementation;
-            var instance = Resolve(typeof(TContract));
-            var lifetime = obj.LifeTime;
-
-            return new Service(contract, implementation, instance, lifetime);
+            obj.SetInstance(Resolve(typeof(TContract)));
+            return obj;
         }
 
         private object Resolve(Type contract)

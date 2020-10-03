@@ -21,6 +21,11 @@ namespace InversionOfControl.Interfaces
         LifeTime LifeTime { get; }
 
         /// <summary>
+        /// Sets concrete implementation of Contract
+        /// </summary>
+        void SetInstance(object instance);
+
+        /// <summary>
         /// Returns an instance
         /// </summary>
         TContract GetInstance<TContract>();
