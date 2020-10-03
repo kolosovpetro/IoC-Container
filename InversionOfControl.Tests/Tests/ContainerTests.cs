@@ -15,7 +15,7 @@ namespace InversionOfControl.Tests.Tests
             IContainer container = null;
             container.RegisterSingleton<ILogger, Logger>();
             var loggerService = container.GetService<ILogger>();
-            var logger = loggerService.GetInstance;
+            var logger = loggerService.Resolve<ILogger>();
             logger.Log("test").Should().Be("This logger inserted new entry: test");
         }
     }

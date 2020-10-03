@@ -2,13 +2,13 @@
 
 namespace InversionOfControl.Interfaces
 {
-    public interface IService<out TContract>
+    public interface IService
     {
         /// <summary>
         /// Returns an instance
         /// </summary>
-        TContract GetInstance { get; }
-        
+        TContract Resolve<TContract>();
+
         /// <summary>
         /// Returns lifetime of the instance
         /// </summary>

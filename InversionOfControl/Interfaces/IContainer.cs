@@ -6,15 +6,15 @@
         /// Adds a new service with transient lifetime to the list of dependencies
         /// </summary>
         void RegisterTransient<TContract, TImplementation>();
-        
+
         /// <summary>
         /// Adds a new service with singleton lifetime to the list of dependencies
         /// </summary>
         void RegisterSingleton<TContract, TImplementation>();
-        
+
         /// <summary>
         /// Returns a service from dependencies list
         /// </summary>
-        IService<TContract> GetService<TContract>();
+        IService GetService<TContract>();
     }
 }
