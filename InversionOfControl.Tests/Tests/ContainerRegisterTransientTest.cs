@@ -16,13 +16,12 @@ namespace InversionOfControl.Tests.Tests
         {
             IContainer container = new Container();
             container.RegisterTransient<ILogger, Logger>();
-            
             var service = container.GetService<ILogger>();
+            service.LifeTime.Should().Be(LifeTime.Transient);
             service.Contract.Should().Be(typeof(ILogger));
             service.Implementation.Should().Be(typeof(Logger));
-            service.LifeTime.Should().Be(LifeTime.Transient);
-            
-            var logger = (ILogger) service.Instance;
+
+            var logger = service.GetInstance<ILogger>();
             logger.Log("test").Should().Be("This logger inserted new entry: test");
         }
     }

@@ -14,7 +14,7 @@ namespace InversionOfControl.UI
             container.RegisterSingleton<ILogger, Logger>();
             var service = container.GetService<ILogger>();
             Console.WriteLine(service.LifeTime);
-            var logger = (ILogger) service.Instance;
+            var logger = service.GetInstance<ILogger>();
             Console.WriteLine(logger.Log("test"));
         }
     }

@@ -8,21 +8,21 @@ namespace InversionOfControl.Interfaces
         /// <summary>
         /// Type of contract of an entity
         /// </summary>
-        Type Contract { get; set; }
+        Type Contract { get; }
         
         /// <summary>
         /// Type of concrete implementation of Contract
         /// </summary>
-        Type Implementation { get; set; }
+        Type Implementation { get; }
         
         /// <summary>
         /// Lifetime of the service
         /// </summary>
-        LifeTime LifeTime { get; set; }
-        
+        LifeTime LifeTime { get; }
+
         /// <summary>
-        /// Concrete instance of an implementation
+        /// Returns an instance
         /// </summary>
-        object Instance { get; set; }
+        TContract GetInstance<TContract>();
     }
 }

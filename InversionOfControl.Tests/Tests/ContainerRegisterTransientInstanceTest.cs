@@ -21,7 +21,7 @@ namespace InversionOfControl.Tests.Tests
             service.Contract.Should().Be(typeof(ILogger));
             service.Implementation.Should().Be(typeof(Logger));
 
-            var logger = (ILogger) service.Instance;
+            var logger = service.GetInstance<ILogger>();
             logger.Log("test").Should().Be("This logger inserted new entry: test");
         }
     }
