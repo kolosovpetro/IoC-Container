@@ -1,7 +1,8 @@
 ﻿using FluentAssertions;
-using InversionOfControl.Interfaces;
+using InversionOfControl.Entities.Implementations;
+using InversionOfControl.Enums;
+using InversionOfControl.Implementations;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using ILogger = InversionOfControl.Entities.Interfaces.ILogger;
 
 namespace InversionOfControl.Tests.Tests
@@ -12,10 +13,15 @@ namespace InversionOfControl.Tests.Tests
         [Test]
         public void Container_Test()
         {
-            IContainer container = null;
+            var container = new Container();
             container.RegisterSingleton<ILogger, Logger>();
-            var loggerService = container.GetService<ILogger>();
-            var logger = loggerService.Resolve<ILogger>();
+            
+            var service = container.GetService<ILogger>();
+            service.Contract.Should().Be(typeof(ILogger));
+            service.Implementation.Should().Be(typeof(Logger));
+            service.LifeTime.Should().Be(LifeTime.Singleton);
+            
+            var logger = (ILogger) service.Instance;
             logger.Log("test").Should().Be("This logger inserted new entry: test");
         }
     }

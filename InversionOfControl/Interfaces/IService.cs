@@ -1,17 +1,28 @@
-﻿using InversionOfControl.Enums;
+﻿using System;
+using InversionOfControl.Enums;
 
 namespace InversionOfControl.Interfaces
 {
     public interface IService
     {
         /// <summary>
-        /// Returns an instance
+        /// Type of contract of an entity
         /// </summary>
-        TContract Resolve<TContract>();
-
+        Type Contract { get; set; }
+        
         /// <summary>
-        /// Returns lifetime of the instance
+        /// Type of concrete implementation of Contract
         /// </summary>
-        LifeTime LifeTime { get; }
+        Type Implementation { get; set; }
+        
+        /// <summary>
+        /// Lifetime of the service
+        /// </summary>
+        LifeTime LifeTime { get; set; }
+        
+        /// <summary>
+        /// Concrete instance of an implementation
+        /// </summary>
+        object Instance { get; set; }
     }
 }

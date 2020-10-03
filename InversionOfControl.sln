@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl.Entities", "InversionOfControl.Entities\InversionOfControl.Entities.csproj", "{DA047C5C-74FD-43BD-B93A-C2BE8F94B1D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl.UI", "InversionOfControl.UI\InversionOfControl.UI.csproj", "{75C523BE-889A-483C-8CBE-9D9E1441E3D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{DA047C5C-74FD-43BD-B93A-C2BE8F94B1D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA047C5C-74FD-43BD-B93A-C2BE8F94B1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA047C5C-74FD-43BD-B93A-C2BE8F94B1D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75C523BE-889A-483C-8CBE-9D9E1441E3D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75C523BE-889A-483C-8CBE-9D9E1441E3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75C523BE-889A-483C-8CBE-9D9E1441E3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75C523BE-889A-483C-8CBE-9D9E1441E3D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
