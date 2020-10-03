@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl", "InversionOfControl\InversionOfControl.csproj", "{0D44A469-4946-4604-A820-CC45D8D3A81F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl.Tests", "InversionOfControl.Tests\InversionOfControl.Tests.csproj", "{89354603-4504-490C-9982-AEA948EEF817}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl.Entities", "InversionOfControl.Entities\InversionOfControl.Entities.csproj", "{DA047C5C-74FD-43BD-B93A-C2BE8F94B1D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D44A469-4946-4604-A820-CC45D8D3A81F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D44A469-4946-4604-A820-CC45D8D3A81F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D44A469-4946-4604-A820-CC45D8D3A81F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D44A469-4946-4604-A820-CC45D8D3A81F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89354603-4504-490C-9982-AEA948EEF817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89354603-4504-490C-9982-AEA948EEF817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89354603-4504-490C-9982-AEA948EEF817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89354603-4504-490C-9982-AEA948EEF817}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA047C5C-74FD-43BD-B93A-C2BE8F94B1D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA047C5C-74FD-43BD-B93A-C2BE8F94B1D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA047C5C-74FD-43BD-B93A-C2BE8F94B1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA047C5C-74FD-43BD-B93A-C2BE8F94B1D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
