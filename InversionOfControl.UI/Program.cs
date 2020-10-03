@@ -1,5 +1,4 @@
-﻿using System;
-using InversionOfControl.Entities.Implementations;
+﻿using InversionOfControl.Entities.Implementations;
 using InversionOfControl.Entities.Interfaces;
 using Container = InversionOfControl.Implementations.Container;
 using IContainer = InversionOfControl.Interfaces.IContainer;

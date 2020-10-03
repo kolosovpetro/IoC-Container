@@ -12,7 +12,7 @@ namespace InversionOfControl.Tests.Tests
     public class ContainerRegisterTransientInstanceTest
     {
         [Test]
-        public void Container_Register_Transient_Instance_Test()
+        public void Container_Register_Transient_Instance_Simple_Test()
         {
             IContainer container = new Container();
             container.RegisterTransient<ILogger, Logger>(new Logger());
@@ -23,6 +23,18 @@ namespace InversionOfControl.Tests.Tests
 
             var logger = service.GetInstance<ILogger>();
             logger.Log("test").Should().Be("This logger inserted new entry: test");
+        }
+
+        [Test]
+        public void Container_Register_Transient_Instance_Test()
+        {
+            IContainer container = new Container();
+            container.RegisterTransient<ILoggerService, LoggerService>(new LoggerService(new Logger()));
+            var service = container.GetService<ILoggerService>();
+            service.LifeTime.Should().Be(LifeTime.Transient);
+
+            var loggerService = service.GetInstance<ILoggerService>();
+            loggerService.LogMessage("test").Should().Be("This logger inserted new entry: test");
         }
     }
 }
