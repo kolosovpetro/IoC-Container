@@ -13,4 +13,9 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\InversionOfControl.Entities\InversionOfControl.Entities.csproj" />
+      <ProjectReference Include="..\InversionOfControl\InversionOfControl.csproj" />
+    </ItemGroup>
+
 </Project>

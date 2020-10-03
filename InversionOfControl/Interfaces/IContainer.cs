@@ -10,7 +10,7 @@
         /// <summary>
         /// Adds a new service with singleton lifetime to the list of dependencies
         /// </summary>
-        void RegisterSingleton<TContract, TImplementation>(TImplementation instance);
+        void RegisterSingleton<TContract, TImplementation>();
         
         /// <summary>
         /// Returns a service from dependencies list
