@@ -9,7 +9,7 @@ namespace InversionOfControl.Implementations
     public class Container : IContainer
     {
         private readonly List<IService> _services = new List<IService>();
-        private readonly Dictionary<Type, object> _instances = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, IService> _instances = new Dictionary<Type, IService>();
 
         public void RegisterTransient<TContract, TImplementation>()
         {
@@ -23,7 +23,13 @@ namespace InversionOfControl.Implementations
 
         public void RegisterTransient<TContract, TImplementation>(TImplementation instance)
         {
-            throw new NotImplementedException();
+            _instances[typeof(TContract)] = new Service
+            {
+                Contract = typeof(TContract),
+                Implementation = typeof(TImplementation),
+                Instance = instance,
+                LifeTime = LifeTime.Transient
+            };
         }
 
         public void RegisterSingleton<TContract, TImplementation>()
@@ -38,11 +44,20 @@ namespace InversionOfControl.Implementations
 
         public void RegisterSingleton<TContract, TImplementation>(TImplementation instance)
         {
-            throw new NotImplementedException();
+            _instances[typeof(TContract)] = new Service
+            {
+                Contract = typeof(TContract),
+                Implementation = typeof(TImplementation),
+                Instance = instance,
+                LifeTime = LifeTime.Singleton
+            };
         }
 
         public IService GetService<TContract>()
         {
+            if (_instances.ContainsKey(typeof(TContract)))
+                return _instances[typeof(TContract)];
+
             return new Service
             {
                 Contract = typeof(TContract),
@@ -54,7 +69,7 @@ namespace InversionOfControl.Implementations
             };
         }
 
-        public object Resolve(Type contract)
+        private object Resolve(Type contract)
         {
             var implementation = _services
                 .First(x => x.Contract == contract)
