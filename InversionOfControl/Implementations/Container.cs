@@ -8,11 +8,12 @@ namespace InversionOfControl.Implementations
 {
     public class Container : IContainer
     {
-        public readonly List<IService> Services = new List<IService>();
+        private readonly List<IService> _services = new List<IService>();
+        private readonly Dictionary<Type, object> _instances = new Dictionary<Type, object>();
 
         public void RegisterTransient<TContract, TImplementation>()
         {
-            Services.Add(new Service
+            _services.Add(new Service
             {
                 Contract = typeof(TContract),
                 Implementation = typeof(TImplementation),
@@ -20,9 +21,14 @@ namespace InversionOfControl.Implementations
             });
         }
 
+        public void RegisterTransient<TContract, TImplementation>(TImplementation instance)
+        {
+            throw new NotImplementedException();
+        }
+
         public void RegisterSingleton<TContract, TImplementation>()
         {
-            Services.Add(new Service
+            _services.Add(new Service
             {
                 Contract = typeof(TContract),
                 Implementation = typeof(TImplementation),
@@ -30,22 +36,27 @@ namespace InversionOfControl.Implementations
             });
         }
 
+        public void RegisterSingleton<TContract, TImplementation>(TImplementation instance)
+        {
+            throw new NotImplementedException();
+        }
+
         public IService GetService<TContract>()
         {
             return new Service
             {
                 Contract = typeof(TContract),
-                Implementation = Services.First(x => x.Contract == typeof(TContract))
+                Implementation = _services.First(x => x.Contract == typeof(TContract))
                     .Implementation,
                 Instance = Resolve(typeof(TContract)),
-                LifeTime = Services.First(x => x.Contract == typeof(TContract))
+                LifeTime = _services.First(x => x.Contract == typeof(TContract))
                     .LifeTime
             };
         }
 
         public object Resolve(Type contract)
         {
-            var implementation = Services
+            var implementation = _services
                 .First(x => x.Contract == contract)
                 .Implementation;
 

@@ -1,17 +1,17 @@
 ﻿using System;
 using InversionOfControl.Entities.Implementations;
 using InversionOfControl.Entities.Interfaces;
-using InversionOfControl.Implementations;
+using Container = InversionOfControl.Implementations.Container;
+using IContainer = InversionOfControl.Interfaces.IContainer;
 
 namespace InversionOfControl.UI
 {
     public static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            var container = new Container();
+            IContainer container = new Container();
             container.RegisterSingleton<ILogger, Logger>();
-            Console.WriteLine(container.Services.Count);
             var service = container.GetService<ILogger>();
             Console.WriteLine(service.LifeTime);
             var logger = (ILogger) service.Instance;
