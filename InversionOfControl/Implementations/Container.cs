@@ -13,44 +13,24 @@ namespace InversionOfControl.Implementations
 
         public void RegisterTransient<TContract, TImplementation>()
         {
-            _services.Add(new Service
-            {
-                Contract = typeof(TContract),
-                Implementation = typeof(TImplementation),
-                LifeTime = LifeTime.Transient
-            });
+            _services.Add(new Service(typeof(TContract), typeof(TImplementation), LifeTime.Transient));
         }
 
         public void RegisterTransient<TContract, TImplementation>(TImplementation instance)
         {
-            _instances[typeof(TContract)] = new Service
-            {
-                Contract = typeof(TContract),
-                Implementation = typeof(TImplementation),
-                Instance = instance,
-                LifeTime = LifeTime.Transient
-            };
+            _instances[typeof(TContract)] =
+                new Service(typeof(TContract), typeof(TImplementation), instance, LifeTime.Transient);
         }
 
         public void RegisterSingleton<TContract, TImplementation>()
         {
-            _services.Add(new Service
-            {
-                Contract = typeof(TContract),
-                Implementation = typeof(TImplementation),
-                LifeTime = LifeTime.Singleton
-            });
+            _services.Add(new Service(typeof(TContract), typeof(TImplementation), LifeTime.Singleton));
         }
 
         public void RegisterSingleton<TContract, TImplementation>(TImplementation instance)
         {
-            _instances[typeof(TContract)] = new Service
-            {
-                Contract = typeof(TContract),
-                Implementation = typeof(TImplementation),
-                Instance = instance,
-                LifeTime = LifeTime.Singleton
-            };
+            _instances[typeof(TContract)] =
+                new Service(typeof(TContract), typeof(TImplementation), instance, LifeTime.Singleton);
         }
 
         public IService GetService<TContract>()
@@ -58,15 +38,9 @@ namespace InversionOfControl.Implementations
             if (_instances.ContainsKey(typeof(TContract)))
                 return _instances[typeof(TContract)];
 
-            return new Service
-            {
-                Contract = typeof(TContract),
-                Implementation = _services.First(x => x.Contract == typeof(TContract))
-                    .Implementation,
-                Instance = Resolve(typeof(TContract)),
-                LifeTime = _services.First(x => x.Contract == typeof(TContract))
-                    .LifeTime
-            };
+            var obj = _services.First(x => x.Contract == typeof(TContract));
+            obj.SetInstance(Resolve(typeof(TContract)));
+            return obj;
         }
 
         private object Resolve(Type contract)
