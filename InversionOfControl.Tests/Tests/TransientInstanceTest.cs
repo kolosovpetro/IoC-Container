@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Threading;
+using FluentAssertions;
 using InversionOfControl.Entities.Implementations;
 using InversionOfControl.Entities.Interfaces;
 using InversionOfControl.Implementations;
@@ -14,7 +15,7 @@ namespace InversionOfControl.Tests.Tests
         public void Transient_Instance_Test()
         {
             IBuilder builder = new Builder();
-            builder.AddSingleton<IRandomNumber, RandomNumber>();
+            builder.AddTransient<IRandomNumber, RandomNumber>();
             var container = builder.Build();
             var random1 = container.GetInstance<IRandomNumber>();
             var random2 = container.GetInstance<IRandomNumber>();

@@ -52,6 +52,12 @@ namespace InversionOfControl.Implementations
 
             var obj = _services[typeof(TContract)];
 
+            if (obj.LifeTime == LifeTime.Transient)
+            {
+                obj.Instance = Resolve(typeof(TContract));
+                return obj;
+            }
+
             if (obj.Instance != null)
                 return obj;
 
