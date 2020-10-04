@@ -23,16 +23,6 @@ namespace InversionOfControl.Interfaces
         /// <summary>
         /// Concrete implementation of Contract
         /// </summary>
-        object Instance { get; }
-
-        /// <summary>
-        /// Sets concrete implementation of Contract
-        /// </summary>
-        void SetInstance(object instance);
-
-        /// <summary>
-        /// Returns an instance
-        /// </summary>
-        TContract GetInstance<TContract>();
+        object Instance { get; set; }
     }
 }

@@ -14,27 +14,13 @@ namespace InversionOfControl.Tests.Tests
         [Test]
         public void Container_Register_Singleton_Instance_Simple_Test()
         {
-            IContainer container = new Container();
-            container.RegisterSingleton<ILogger, Logger>(new Logger());
-            var service = container.GetService<ILogger>();
-            service.LifeTime.Should().Be(LifeTime.Singleton);
-            service.Contract.Should().Be(typeof(ILogger));
-            service.Implementation.Should().Be(typeof(Logger));
-
-            var logger = service.GetInstance<ILogger>();
-            logger.Log("test").Should().Be("This logger inserted new entry: test");
+            
         }
         
         [Test]
         public void Container_Register_Singleton_Instance_Test()
         {
-            IContainer container = new Container();
-            container.RegisterSingleton<ILoggerService, LoggerService>(new LoggerService(new Logger()));
-            var service = container.GetService<ILoggerService>();
-            service.LifeTime.Should().Be(LifeTime.Singleton);
-
-            var loggerService = service.GetInstance<ILoggerService>();
-            loggerService.LogMessage("test").Should().Be("This logger inserted new entry: test");
+            
         }
     }
 }

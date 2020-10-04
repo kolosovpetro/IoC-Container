@@ -1,7 +1,7 @@
 ﻿using InversionOfControl.Entities.Implementations;
 using InversionOfControl.Entities.Interfaces;
-using Container = InversionOfControl.Implementations.Container;
-using IContainer = InversionOfControl.Interfaces.IContainer;
+using InversionOfControl.Implementations;
+using InversionOfControl.Interfaces;
 
 namespace InversionOfControl.UI
 {
@@ -9,13 +9,11 @@ namespace InversionOfControl.UI
     {
         private static void Main()
         {
-            IContainer container = new Container();
-            container.RegisterSingleton<ILogger, Logger>();
-            container.RegisterSingleton<ILoggerService, LoggerService>();
-            var service = container.GetService<ILoggerService>();
-            
-            
-            var loggerService = service.GetInstance<ILoggerService>();
+            IBuilder builder = new Builder();
+            builder.AddSingleton<ILogger, Logger>();
+            builder.AddSingleton<ILoggerService, LoggerService>();
+            var container = builder.Build();
+            var loggerService = container.GetInstance<ILoggerService>();
             loggerService.Log("test");
         }
     }

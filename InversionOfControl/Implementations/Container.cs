@@ -39,7 +39,7 @@ namespace InversionOfControl.Implementations
                 return _instances[typeof(TContract)];
 
             var obj = _services.First(x => x.Contract == typeof(TContract));
-            obj.SetInstance(Resolve(typeof(TContract)));
+            obj.Instance = Resolve(typeof(TContract));
             return obj;
         }
 

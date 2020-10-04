@@ -9,7 +9,7 @@ namespace InversionOfControl.Implementations
         public Type Contract { get; }
         public Type Implementation { get; }
         public LifeTime LifeTime { get; }
-        public object Instance { get; private set; }
+        public object Instance { get; set; }
 
         public Service(Type contract, Type implementation, LifeTime lifeTime)
         {
@@ -29,11 +29,6 @@ namespace InversionOfControl.Implementations
         public void SetInstance(object instance)
         {
             Instance = instance;
-        }
-
-        public TContract GetInstance<TContract>()
-        {
-            return (TContract) Instance;
         }
     }
 }
