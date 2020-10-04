@@ -6,8 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\InversionOfControl.Core\InversionOfControl.Core.csproj" />
       <ProjectReference Include="..\InversionOfControl.Entities\InversionOfControl.Entities.csproj" />
-      <ProjectReference Include="..\InversionOfControl\InversionOfControl.csproj" />
     </ItemGroup>
 
 </Project>

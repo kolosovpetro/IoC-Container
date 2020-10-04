@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl", "InversionOfControl\InversionOfControl.csproj", "{0D44A469-4946-4604-A820-CC45D8D3A81F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl.Core", "InversionOfControl.Core\InversionOfControl.Core.csproj", "{0D44A469-4946-4604-A820-CC45D8D3A81F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl.Tests", "InversionOfControl.Tests\InversionOfControl.Tests.csproj", "{89354603-4504-490C-9982-AEA948EEF817}"
 EndProject
