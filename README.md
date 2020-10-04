@@ -10,4 +10,9 @@ Simple IoC Container.
 - Add checks that TImplementation implements TContract
 - Create abstraction layer to reduce cast
 - Create verification on dependency add
-- Create and throw custom exceptions
+- Create and throw custom exceptions:
+  - Invalid Type Exception: to be thrown when TImplementation doesn't implement TContract
+  - Type Already Registered Exception: 
+    - to be thrown when user try to add TConctract which is already registered
+	- to be thrown when instance is not a TContract
+  - Type Not Found Exception: to be thrown if TConctract is not registered in container
