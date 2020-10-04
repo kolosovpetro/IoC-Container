@@ -24,3 +24,4 @@ Simple IoC Container. This container consists of the following layers:
   - TypeAlreadyRegisteredException: to be thrown when user try to add TConctract which is already registered
   - TypeNotFoundException: to be thrown if TConctract is not registered in container
 - Implement logic such that will provide always new instance in Transient, and to keep instance in case if Singleton
+- Remove second generic parameter in Register<T, TK> (instance)
