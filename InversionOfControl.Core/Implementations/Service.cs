@@ -11,7 +11,7 @@ namespace InversionOfControl.Implementations
         public LifeTime LifeTime { get; }
         public object Instance { get; set; }
 
-        public bool IsInitialized => Instance == null;
+        public bool InstanceInitialized => Instance != null;
 
         public Service(Type contract, Type implementation, LifeTime lifeTime)
         {

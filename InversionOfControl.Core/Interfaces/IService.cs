@@ -28,6 +28,6 @@ namespace InversionOfControl.Interfaces
         /// <summary>
         /// Checks whenever instance is not null
         /// </summary>
-        bool IsInitialized { get; }
+        bool InstanceInitialized { get; }
     }
 }
