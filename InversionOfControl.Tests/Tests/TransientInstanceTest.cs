@@ -14,12 +14,12 @@ namespace InversionOfControl.Tests.Tests
         public void Transient_Instance_Test()
         {
             IBuilder builder = new Builder();
-            builder.AddSingleton<IDateKeeper, DateKeeper>();
+            builder.AddSingleton<IRandomNumber, RandomNumber>();
             var container = builder.Build();
-            var dateKeeper1 = container.GetInstance<IDateKeeper>();
-            var dateKeeper2 = container.GetInstance<IDateKeeper>();
-            dateKeeper1.CurrentDate.Should().NotBe(dateKeeper2.CurrentDate);
-            ReferenceEquals(dateKeeper1, dateKeeper2).Should().BeFalse();
+            var random1 = container.GetInstance<IRandomNumber>();
+            var random2 = container.GetInstance<IRandomNumber>();
+            random1.GetRandomNumber().Should().NotBe(random2.GetRandomNumber());
+            ReferenceEquals(random1, random2).Should().BeFalse();
         }
     }
 }

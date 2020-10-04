@@ -2,8 +2,8 @@
 
 namespace InversionOfControl.Entities.Interfaces
 {
-    public interface IDateKeeper
+    public interface IRandomNumber
     {
-        DateTime CurrentDate { get; }
+        int GetRandomNumber();
     }
 }
