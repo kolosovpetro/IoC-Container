@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using InversionOfControl.Enums;
 using InversionOfControl.Exceptions;
 using InversionOfControl.Interfaces;
@@ -9,21 +8,21 @@ namespace InversionOfControl.Implementations
 {
     public class Container : IContainer
     {
-        private readonly List<IService> _services = new List<IService>();
-        private readonly Dictionary<Type, IService> _instances = new Dictionary<Type, IService>();
+        private readonly Dictionary<Type, IService> _services = new Dictionary<Type, IService>();
 
         public void RegisterTransient<TContract, TImplementation>()
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
 
-            _services.Add(new Service(typeof(TContract), typeof(TImplementation), LifeTime.Transient));
+            _services[typeof(TContract)]
+                = new Service(typeof(TContract), typeof(TImplementation), LifeTime.Transient);
         }
 
         public void RegisterTransient<TContract, TImplementation>(TImplementation instance)
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
 
-            _instances[typeof(TContract)] =
+            _services[typeof(TContract)] =
                 new Service(typeof(TContract), typeof(TImplementation), instance, LifeTime.Transient);
         }
 
@@ -31,25 +30,27 @@ namespace InversionOfControl.Implementations
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
 
-            _services.Add(new Service(typeof(TContract), typeof(TImplementation), LifeTime.Singleton));
+            _services[typeof(TContract)]
+                = new Service(typeof(TContract), typeof(TImplementation), LifeTime.Singleton);
         }
 
         public void RegisterSingleton<TContract, TImplementation>(TImplementation instance)
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
 
-            _instances[typeof(TContract)] =
+            _services[typeof(TContract)] =
                 new Service(typeof(TContract), typeof(TImplementation), instance, LifeTime.Singleton);
         }
 
         private IService GetService<TContract>()
         {
             ThrowExceptionIfNotRegistered(typeof(TContract));
-            
-            if (_instances.ContainsKey(typeof(TContract)))
-                return _instances[typeof(TContract)];
 
-            var obj = _services.First(x => x.Contract == typeof(TContract));
+            var obj = _services[typeof(TContract)];
+
+            if (obj.Instance != null)
+                return obj;
+
             obj.Instance = Resolve(typeof(TContract));
             return obj;
         }
@@ -62,9 +63,7 @@ namespace InversionOfControl.Implementations
 
         private object Resolve(Type contract)
         {
-            var implementation = _services
-                .First(x => x.Contract == contract)
-                .Implementation;
+            var implementation = _services[contract].Implementation;
 
             var constructor = implementation.GetConstructors()[0];
             var constructorParams = constructor.GetParameters();
@@ -94,7 +93,7 @@ namespace InversionOfControl.Implementations
 
         private bool IsRegistered(Type contract)
         {
-            return _services.Any(x => x.Contract == contract);
+            return _services.ContainsKey(contract);
         }
     }
 }
