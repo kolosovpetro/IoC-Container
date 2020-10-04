@@ -19,15 +19,6 @@ namespace InversionOfControl.Implementations
                 = new Service(typeof(TContract), typeof(TImplementation), LifeTime.Transient);
         }
 
-        public void RegisterTransient<TContract, TImplementation>(TImplementation instance)
-        {
-            ThrowExceptionIfAlreadyRegistered(typeof(TContract));
-            ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
-
-            _services[typeof(TContract)] =
-                new Service(typeof(TContract), typeof(TImplementation), instance, LifeTime.Transient);
-        }
-
         public void RegisterSingleton<TContract, TImplementation>()
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
@@ -37,7 +28,7 @@ namespace InversionOfControl.Implementations
                 = new Service(typeof(TContract), typeof(TImplementation), LifeTime.Singleton);
         }
 
-        public void RegisterSingleton<TContract, TImplementation>(TImplementation instance)
+        public void RegisterSingletonInstance<TContract, TImplementation>(TImplementation instance)
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
             ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));

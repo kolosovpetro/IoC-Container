@@ -11,19 +11,14 @@ namespace InversionOfControl.Implementations
             _container.RegisterTransient<TContract, TImplementation>();
         }
 
-        public void AddTransient<TContract, TImplementation>(TImplementation instance)
-        {
-           _container.RegisterTransient<TContract, TImplementation>(instance);
-        }
-
         public void AddSingleton<TContract, TImplementation>()
         {
             _container.RegisterSingleton<TContract, TImplementation>();
         }
 
-        public void AddSingleton<TContract, TImplementation>(TImplementation instance)
+        public void AddSingletonInstance<TContract, TImplementation>(TImplementation instance)
         {
-            _container.RegisterSingleton<TContract, TImplementation>(instance);
+            _container.RegisterSingletonInstance<TContract, TImplementation>(instance);
         }
 
         public IContainer Build()

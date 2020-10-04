@@ -14,7 +14,7 @@ namespace InversionOfControl.Tests.Tests
         public void Container_Register_Singleton_Instance_Test()
         {
             IBuilder builder = new Builder();
-            builder.AddSingleton<ILoggerService, LoggerService>(new LoggerService(new Logger()));
+            builder.AddSingletonInstance<ILoggerService, LoggerService>(new LoggerService(new Logger()));
             var container = builder.Build();
             var loggerService = container.GetInstance<ILoggerService>();
             loggerService.LogMessage("test").Should().Be("This logger inserted new entry: test");

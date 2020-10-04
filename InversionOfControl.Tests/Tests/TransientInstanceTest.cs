@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using FluentAssertions;
+﻿using FluentAssertions;
 using InversionOfControl.Entities.Implementations;
 using InversionOfControl.Entities.Interfaces;
 using InversionOfControl.Implementations;
