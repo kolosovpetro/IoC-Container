@@ -24,5 +24,10 @@ namespace InversionOfControl.Interfaces
         /// Concrete implementation of Contract
         /// </summary>
         object Instance { get; set; }
+        
+        /// <summary>
+        /// Checks whenever instance is not null
+        /// </summary>
+        bool IsInitialized { get; }
     }
 }
