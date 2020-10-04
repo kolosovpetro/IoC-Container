@@ -43,22 +43,22 @@ namespace InversionOfControl.Implementations
 
             var obj = _services[typeof(TContract)];
 
-            if (obj.LifeTime == LifeTime.Transient && obj.InstanceInitialized)
+            switch (obj.LifeTime)
             {
-                return obj;
+                case LifeTime.Transient:
+                {
+                    var contract = obj.Contract;
+                    var implementation = obj.Implementation;
+                    var instance = Resolve(typeof(TContract));
+                    var lifeTime = obj.LifeTime;
+                    return new Service(contract, implementation, instance, lifeTime);
+                }
+                case LifeTime.Singleton when !obj.InstanceInitialized:
+                    obj.Instance = Resolve(typeof(TContract));
+                    return obj;
+                default:
+                    return obj;
             }
-
-            if (obj.LifeTime == LifeTime.Transient)
-            {
-                obj.Instance = Resolve(typeof(TContract));
-                return obj;
-            }
-
-            if (obj.Instance != null)
-                return obj;
-
-            obj.Instance = Resolve(typeof(TContract));
-            return obj;
         }
 
         public TContract GetInstance<TContract>()
