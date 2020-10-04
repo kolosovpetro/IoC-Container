@@ -18,9 +18,9 @@ Simple IoC Container. This container consists of the following layers:
 - Create abstraction layer to reduce cast
 - Create verification on dependency add
 - Create and throw custom exceptions:
-  - Invalid Type Exception: to be thrown when TImplementation doesn't implement TContract
-  - Type Already Registered Exception: 
-    - to be thrown when user try to add TConctract which is already registered
-	- to be thrown when instance is not a TContract
-  - Type Not Found Exception: to be thrown if TConctract is not registered in container
+  - InvalidTypeException: 
+    - to be thrown when TImplementation doesn't implement TContract
+    - to be thrown when instance is not a TContract
+  - TypeAlreadyRegisteredException: to be thrown when user try to add TConctract which is already registered
+  - TypeNotFoundException: to be thrown if TConctract is not registered in container
 - Implement logic such that will provide always new instance in Transient, and to keep instance in case if Singleton
