@@ -25,10 +25,5 @@ namespace InversionOfControl.Implementations
             LifeTime = lifeTime;
             Instance = instance;
         }
-
-        public void SetInstance(object instance)
-        {
-            Instance = instance;
-        }
     }
 }
