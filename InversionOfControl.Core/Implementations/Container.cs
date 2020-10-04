@@ -95,7 +95,7 @@ namespace InversionOfControl.Implementations
                 throw new TypeNotRegisteredException($"Type {contract} is not registered");
         }
 
-        private void ThrowExceptionIfNotSubtype(Type baseType, Type subType)
+        private static void ThrowExceptionIfNotSubtype(Type baseType, Type subType)
         {
             if (!IsSubtype(baseType, subType))
                 throw new InvalidTypeException($"Type {subType} is not {baseType}");
@@ -106,7 +106,7 @@ namespace InversionOfControl.Implementations
             return _services.ContainsKey(contract);
         }
 
-        private bool IsSubtype(Type baseType, Type subType)
+        private static bool IsSubtype(Type baseType, Type subType)
         {
             return baseType.IsAssignableFrom(subType);
         }
