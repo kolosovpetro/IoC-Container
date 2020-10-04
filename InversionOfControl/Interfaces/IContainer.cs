@@ -26,5 +26,10 @@
         /// Returns a service from dependencies list
         /// </summary>
         IService GetService<TContract>();
+
+        /// <summary>
+        /// Returns concrete implementation of Contract
+        /// </summary>
+        TContract GetInstance<TContract>();
     }
 }

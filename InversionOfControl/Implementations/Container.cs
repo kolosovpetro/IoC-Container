@@ -43,6 +43,12 @@ namespace InversionOfControl.Implementations
             return obj;
         }
 
+        public TContract GetInstance<TContract>()
+        {
+            var service = GetService<TContract>();
+            return (TContract) service.Instance;
+        }
+
         private object Resolve(Type contract)
         {
             var implementation = _services

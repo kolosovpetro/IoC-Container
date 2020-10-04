@@ -23,7 +23,7 @@
         void AddSingleton<TContract, TImplementation>(TImplementation instance);
 
         /// <summary>
-        /// Returns a service from dependencies list
+        /// Returns a concrete container.
         /// </summary>
         IContainer Build();
     }

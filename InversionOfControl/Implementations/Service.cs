@@ -9,7 +9,7 @@ namespace InversionOfControl.Implementations
         public Type Contract { get; }
         public Type Implementation { get; }
         public LifeTime LifeTime { get; }
-        private object Instance { get; set; }
+        public object Instance { get; private set; }
 
         public Service(Type contract, Type implementation, LifeTime lifeTime)
         {

@@ -19,6 +19,11 @@ namespace InversionOfControl.Interfaces
         /// Lifetime of the service
         /// </summary>
         LifeTime LifeTime { get; }
+        
+        /// <summary>
+        /// Concrete implementation of Contract
+        /// </summary>
+        object Instance { get; }
 
         /// <summary>
         /// Sets concrete implementation of Contract
