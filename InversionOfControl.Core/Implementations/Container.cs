@@ -13,6 +13,7 @@ namespace InversionOfControl.Implementations
         public void RegisterTransient<TContract, TImplementation>()
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
+            ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
 
             _services[typeof(TContract)]
                 = new Service(typeof(TContract), typeof(TImplementation), LifeTime.Transient);
@@ -21,6 +22,7 @@ namespace InversionOfControl.Implementations
         public void RegisterTransient<TContract, TImplementation>(TImplementation instance)
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
+            ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
 
             _services[typeof(TContract)] =
                 new Service(typeof(TContract), typeof(TImplementation), instance, LifeTime.Transient);
@@ -29,6 +31,7 @@ namespace InversionOfControl.Implementations
         public void RegisterSingleton<TContract, TImplementation>()
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
+            ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
 
             _services[typeof(TContract)]
                 = new Service(typeof(TContract), typeof(TImplementation), LifeTime.Singleton);
@@ -37,6 +40,7 @@ namespace InversionOfControl.Implementations
         public void RegisterSingleton<TContract, TImplementation>(TImplementation instance)
         {
             ThrowExceptionIfAlreadyRegistered(typeof(TContract));
+            ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
 
             _services[typeof(TContract)] =
                 new Service(typeof(TContract), typeof(TImplementation), instance, LifeTime.Singleton);
@@ -91,9 +95,20 @@ namespace InversionOfControl.Implementations
                 throw new TypeNotRegisteredException($"Type {contract} is not registered");
         }
 
+        private void ThrowExceptionIfNotSubtype(Type baseType, Type subType)
+        {
+            if (!IsSubtype(baseType, subType))
+                throw new InvalidTypeException($"Type {subType} is not {baseType}");
+        }
+
         private bool IsRegistered(Type contract)
         {
             return _services.ContainsKey(contract);
+        }
+
+        private bool IsSubtype(Type baseType, Type subType)
+        {
+            return baseType.IsAssignableFrom(subType);
         }
     }
 }
