@@ -15,7 +15,7 @@ namespace InversionOfControl.Entities.Implementations
 
         public int GetRandomNumber()
         {
-            throw new NotImplementedException();
+            return _randomNumber;
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace InversionOfControl.Entities.Interfaces
+﻿namespace InversionOfControl.Entities.Interfaces
 {
     public interface IRandomNumber
     {
