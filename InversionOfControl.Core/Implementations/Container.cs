@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using InversionOfControl.Enums;
-using InversionOfControl.Exceptions;
 using InversionOfControl.Interfaces;
 
 namespace InversionOfControl.Implementations
@@ -12,8 +11,8 @@ namespace InversionOfControl.Implementations
 
         public void RegisterTransient<TContract, TImplementation>()
         {
-            ThrowExceptionIfAlreadyRegistered(typeof(TContract));
-            ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
+            TypeVerifier.ThrowExceptionIfAlreadyRegistered(_services, typeof(TContract));
+            TypeVerifier.ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
 
             _services[typeof(TContract)]
                 = new Service(typeof(TContract), typeof(TImplementation), LifeTime.Transient);
@@ -21,8 +20,8 @@ namespace InversionOfControl.Implementations
 
         public void RegisterSingleton<TContract, TImplementation>()
         {
-            ThrowExceptionIfAlreadyRegistered(typeof(TContract));
-            ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
+            TypeVerifier.ThrowExceptionIfAlreadyRegistered(_services, typeof(TContract));
+            TypeVerifier.ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
 
             _services[typeof(TContract)]
                 = new Service(typeof(TContract), typeof(TImplementation), LifeTime.Singleton);
@@ -30,8 +29,8 @@ namespace InversionOfControl.Implementations
 
         public void RegisterSingletonInstance<TContract, TImplementation>(TImplementation instance)
         {
-            ThrowExceptionIfAlreadyRegistered(typeof(TContract));
-            ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
+            TypeVerifier.ThrowExceptionIfAlreadyRegistered(_services, typeof(TContract));
+            TypeVerifier.ThrowExceptionIfNotSubtype(typeof(TContract), typeof(TImplementation));
 
             _services[typeof(TContract)] =
                 new Service(typeof(TContract), typeof(TImplementation), instance, LifeTime.Singleton);
@@ -39,7 +38,7 @@ namespace InversionOfControl.Implementations
 
         private IService GetService<TContract>()
         {
-            ThrowExceptionIfNotRegistered(typeof(TContract));
+            TypeVerifier.ThrowExceptionIfNotRegistered(_services, typeof(TContract));
 
             var obj = _services[typeof(TContract)];
 
@@ -83,34 +82,6 @@ namespace InversionOfControl.Implementations
                 parameters.Add(Resolve(param.ParameterType));
 
             return constructor.Invoke(parameters.ToArray());
-        }
-
-        private void ThrowExceptionIfAlreadyRegistered(Type contract)
-        {
-            if (IsRegistered(contract))
-                throw new TypeAlreadyRegisteredException($"Type {contract} is already registered");
-        }
-
-        private void ThrowExceptionIfNotRegistered(Type contract)
-        {
-            if (!IsRegistered(contract))
-                throw new TypeNotRegisteredException($"Type {contract} is not registered");
-        }
-
-        private static void ThrowExceptionIfNotSubtype(Type baseType, Type subType)
-        {
-            if (!IsSubtype(baseType, subType))
-                throw new InvalidTypeException($"Type {subType} is not {baseType}");
-        }
-
-        private bool IsRegistered(Type contract)
-        {
-            return _services.ContainsKey(contract);
-        }
-
-        private static bool IsSubtype(Type baseType, Type subType)
-        {
-            return baseType.IsAssignableFrom(subType);
         }
     }
 }
