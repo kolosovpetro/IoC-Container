@@ -4,6 +4,15 @@
 
 Simple IoC Container. This container consists of the following layers:
 
+```cs
+		IBuilder builder = new Builder();
+        builder.AddSingleton<ILogger, Logger>();
+        builder.AddSingleton<ILoggerService, LoggerService>();
+        builder.AddSingleton<IRandomNumber, RandomNumber>();
+        var container = builder.Build();
+        var loggerService = container.GetInstance<ILoggerService>();
+```
+
 - Builder: abstraction over container, builds container, registers types and returns concrete container.
 - Container: has a methods in order to register types and returns concrete instance, which implements TConctract
 - Service: entity with type properties, concrete implementation of TContract, and enum property lifetime
