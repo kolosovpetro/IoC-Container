@@ -7,7 +7,7 @@ Simple IoC Container. This container consists of the following layers:
 Snippet:
 
 ```cs
-	    IBuilder builder = new Builder();
+	IBuilder builder = new Builder();
         builder.AddSingleton<ILogger, Logger>();
         builder.AddSingleton<ILoggerService, LoggerService>();
         builder.AddSingleton<IRandomNumber, RandomNumber>();
