@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace InversionOfControl.Exceptions
+namespace InversionOfControl.Exceptions;
+
+public class TypeAlreadyRegisteredException : Exception
 {
-    public class TypeAlreadyRegisteredException : Exception
+    public TypeAlreadyRegisteredException(string message) : base(message)
     {
-        public TypeAlreadyRegisteredException(string message) : base(message)
-        {
-        }
     }
 }

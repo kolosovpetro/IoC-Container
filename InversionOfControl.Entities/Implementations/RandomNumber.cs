@@ -1,21 +1,20 @@
 ﻿using System;
 using InversionOfControl.Entities.Interfaces;
 
-namespace InversionOfControl.Entities.Implementations
+namespace InversionOfControl.Entities.Implementations;
+
+public class RandomNumber : IRandomNumber
 {
-    public class RandomNumber : IRandomNumber
+    private readonly int _randomNumber;
+
+    public RandomNumber()
     {
-        private readonly int _randomNumber;
+        var random = new Random();
+        _randomNumber = random.Next();
+    }
 
-        public RandomNumber()
-        {
-            var random = new Random();
-            _randomNumber = random.Next();
-        }
-
-        public int GetRandomNumber()
-        {
-            return _randomNumber;
-        }
+    public int GetRandomNumber()
+    {
+        return _randomNumber;
     }
 }

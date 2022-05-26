@@ -6,21 +6,20 @@ using InversionOfControl.Implementations;
 using InversionOfControl.Interfaces;
 using NUnit.Framework;
 
-namespace InversionOfControl.Tests.Tests
+namespace InversionOfControl.Tests.Tests;
+
+[TestFixture]
+public class TypeNotFoundExceptionTest
 {
-    [TestFixture]
-    public class TypeNotFoundExceptionTest
+    [Test]
+    public void Type_Not_Found_Exception_Test()
     {
-        [Test]
-        public void Type_Not_Found_Exception_Test()
-        {
-            IBuilder builder = new Builder();
-            var container = builder.Build();
+        IBuilder builder = new Builder();
+        var container = builder.Build();
 
-            Action act = () => container.GetInstance<ILogger>();
+        Action act = () => container.GetInstance<ILogger>();
 
-            act.Should().Throw<TypeNotRegisteredException>()
-                .WithMessage($"Type {typeof(ILogger)} is not registered");
-        }
+        act.Should().Throw<TypeNotRegisteredException>()
+            .WithMessage($"Type {typeof(ILogger)} is not registered");
     }
 }

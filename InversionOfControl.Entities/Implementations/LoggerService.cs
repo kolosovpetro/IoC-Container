@@ -1,25 +1,24 @@
 ﻿using System;
 using InversionOfControl.Entities.Interfaces;
 
-namespace InversionOfControl.Entities.Implementations
+namespace InversionOfControl.Entities.Implementations;
+
+public class LoggerService : ILoggerService
 {
-    public class LoggerService : ILoggerService
+    private readonly ILogger _logger;
+
+    public LoggerService(ILogger logger)
     {
-        private readonly ILogger _logger;
+        _logger = logger;
+    }
 
-        public LoggerService(ILogger logger)
-        {
-            _logger = logger;
-        }
+    public void Log(string text)
+    {
+        Console.WriteLine(_logger.Log(text));
+    }
 
-        public void Log(string text)
-        {
-            Console.WriteLine(_logger.Log(text));
-        }
-
-        public string LogMessage(string text)
-        {
-            return _logger.Log(text);
-        }
+    public string LogMessage(string text)
+    {
+        return _logger.Log(text);
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace InversionOfControl.Entities.Interfaces
+﻿namespace InversionOfControl.Entities.Interfaces;
+
+public interface IRandomNumber
 {
-    public interface IRandomNumber
-    {
-        int GetRandomNumber();
-    }
+    int GetRandomNumber();
 }

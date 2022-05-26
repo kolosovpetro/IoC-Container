@@ -8,6 +8,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl.Entities
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InversionOfControl.UI", "InversionOfControl.UI\InversionOfControl.UI.csproj", "{75C523BE-889A-483C-8CBE-9D9E1441E3D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{E4AC11FE-6270-48DA-AA0B-A82E8C75EB5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{A775457D-185A-4E0F-8959-B32D308C9CFD}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +37,8 @@ Global
 		{75C523BE-889A-483C-8CBE-9D9E1441E3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75C523BE-889A-483C-8CBE-9D9E1441E3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75C523BE-889A-483C-8CBE-9D9E1441E3D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A775457D-185A-4E0F-8959-B32D308C9CFD} = {E4AC11FE-6270-48DA-AA0B-A82E8C75EB5A}
 	EndGlobalSection
 EndGlobal

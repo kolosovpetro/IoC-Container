@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace InversionOfControl.Exceptions
+namespace InversionOfControl.Exceptions;
+
+public class InvalidTypeException : Exception
 {
-    public class InvalidTypeException : Exception
+    public InvalidTypeException(string message) : base(message)
     {
-        public InvalidTypeException(string message) : base(message)
-        {
-        }
     }
 }
