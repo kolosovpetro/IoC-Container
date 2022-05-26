@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>InversionOfControl</RootNamespace>
         <PackageId>InversionOfControl.Core</PackageId>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <Authors>Petro Kolosov</Authors>
         <Description>Simple Reflection-driven Inversion of Control container.</Description>
         <Company>Petro Kolosov</Company>
