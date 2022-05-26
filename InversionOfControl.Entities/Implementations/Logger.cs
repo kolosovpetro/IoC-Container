@@ -1,9 +1,8 @@
 ﻿using InversionOfControl.Entities.Interfaces;
 
-namespace InversionOfControl.Entities.Implementations
+namespace InversionOfControl.Entities.Implementations;
+
+public class Logger : ILogger
 {
-    public class Logger : ILogger
-    {
-        public string Log(string data) => $"This logger inserted new entry: {data}";
-    }
+    public string Log(string data) => $"This logger inserted new entry: {data}";
 }

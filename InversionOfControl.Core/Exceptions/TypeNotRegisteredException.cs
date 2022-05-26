@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace InversionOfControl.Exceptions
+namespace InversionOfControl.Exceptions;
+
+public class TypeNotRegisteredException: Exception
 {
-    public class TypeNotRegisteredException: Exception
+    public TypeNotRegisteredException(string message) : base(message)
     {
-        public TypeNotRegisteredException(string message) : base(message)
-        {
-        }
     }
 }

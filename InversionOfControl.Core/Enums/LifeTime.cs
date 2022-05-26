@@ -1,8 +1,7 @@
-﻿namespace InversionOfControl.Enums
+﻿namespace InversionOfControl.Enums;
+
+public enum LifeTime
 {
-    public enum LifeTime
-    {
-        Singleton,
-        Transient
-    }
+    Singleton,
+    Transient
 }

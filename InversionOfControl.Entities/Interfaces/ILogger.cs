@@ -1,7 +1,6 @@
-﻿namespace InversionOfControl.Entities.Interfaces
+﻿namespace InversionOfControl.Entities.Interfaces;
+
+public interface ILogger
 {
-    public interface ILogger
-    {
-        string Log(string data);
-    }
+    string Log(string data);
 }
