@@ -30,11 +30,13 @@ jobs:
       - name: Run Unit Tests
         run: dotnet test InversionOfControl.Tests/InversionOfControl.Tests.csproj
 
-      - name: Publish Nuget Package
+      - name: Install Nuget Tool 6.2.0
         uses: nuget/setup-nuget@v1
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
           nuget-version: '6.2.0'
+
+      - name: Deploy Nuget Package
         run: |
           cd InversionOfControl.Core
           nuget spec InversionOfControl.Core.csproj
