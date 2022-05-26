@@ -39,5 +39,8 @@ jobs:
 
       - name: Deploy Nuget Package
         run: |
-          nuget spec InversionOfControl.Core/InversionOfControl.Core.csproj
-          dotnet nuget push InversionOfControl.Core/InversionOfControl.Core.nuspec --api-key ${{ secrets.NuGetAPIKey }} --source https://api.nuget.org/v3/index.json
+          cd InversionOfControl.Core
+          nuget spec InversionOfControl.Core.csproj
+          dotnet nuget push InversionOfControl.Core.nuspec --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
