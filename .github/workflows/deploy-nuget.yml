@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - develop
 
   workflow_dispatch:
     branches:
@@ -38,6 +39,5 @@ jobs:
 
       - name: Deploy Nuget Package
         run: |
-          cd InversionOfControl.Core
-          nuget spec InversionOfControl.Core.csproj
-          dotnet nuget push InversionOfControl.Core.nuspec --api-key ${{ secrets.NuGetAPIKey }} --source https://api.nuget.org/v3/index.json
+          nuget spec InversionOfControl.Core/InversionOfControl.Core.csproj
+          dotnet nuget push InversionOfControl.Core/InversionOfControl.Core.nuspec --api-key ${{ secrets.NuGetAPIKey }} --source https://api.nuget.org/v3/index.json
