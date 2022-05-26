@@ -41,6 +41,6 @@ jobs:
         run: |
           cd InversionOfControl.Core
           dotnet pack -o "PackageDir" InversionOfControl.Core.csproj
-          dotnet nuget push PackageDir/InversionOfControl.Core.1.0.0.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+          dotnet nuget push PackageDir/InversionOfControl.Core.1.0.0.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
